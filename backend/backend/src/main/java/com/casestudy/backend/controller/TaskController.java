@@ -9,15 +9,25 @@ import java.util.List;
 //by team 1
 @RestController
 @RequestMapping("/tasks")
-public class taskController {
+public class TaskController {
 
-    private List<Tasks> tasks;
+    @Autowired
+    TaskRepository taskRepository;
 
+    @GetMapping("/tasks/{id}")
+    public Tasks getTaskbyId(@PathVariable("id") int id) {
+        Optional<Tasks> tasks = taskRepository.findById(id);
+        if (tasks.isPresent()) {
+            return tasks.get();
+        } else {
+            return null;
+        }
+    }
 
-    @GetMapping("/{id}")
-    public Tasks getTaskbyId(){
-        Tasks tasks = new Tasks();
-
+    @GetMapping("/tasks")
+    public List<Tasks> getAllTasks() {
+        List<Tasks> tasks = new ArrayList<Tasks>();
+        taskRepository.findAll().forEach(tasks::add);
         return tasks;
     }
 }
