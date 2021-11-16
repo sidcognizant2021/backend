@@ -1,20 +1,35 @@
 package com.casestudy.backend.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.util.Date;
 
+import javax.persistence.*;
+
 @Entity
+@Table(name = "TASKS")
 public class Tasks {
 
     @Id
     int id;
+    
+    @Column(name = "title")
     String title;
+    
+    @Column(name = "details")
     String details;
+    
+    @Column(name = "when")
     String when;
+    
+    @Column(name = "deadline")
     Date deadline;
+    
+    @Column(name = "is_project")
     boolean isProject;
-    int parent; //": -1,
+    
+    @Column(name = "parent")
+    int parent;
+    
+    @Column(name = "done")
     boolean done;
 
     public int getId() {
