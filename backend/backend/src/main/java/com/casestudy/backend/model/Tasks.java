@@ -9,6 +9,7 @@ import javax.persistence.*;
 public class Tasks {
 
     @Id
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     int id;
     
     @Column(name = "title")
